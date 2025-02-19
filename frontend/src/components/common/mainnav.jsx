@@ -1,74 +1,28 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function MainNav() {
-  const navigate = useNavigate();
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        color: "#fff",
-        fontFamily: "Arial, sans-serif",
-        padding: '50 100px'
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "70px 150px",
-        }}
-      >
-        <div className='main-header'
-        style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              fontWeight: "bold",
-              fontSize: "26px",
-              marginRight: "10px",
-              color: "#f9a825",
-              cursor: "pointer",
-            }}
-          >
-            Quiz
-          </div>
-          <div
-            style={{
-              fontSize: "15px",
-              color: "#000",
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-           Master
-          </div>
-        </div>
-        <div className="header2"
-          style={{
-            display: "flex",
-            gap: "100px",
-          }}
+    <nav className="bg-blue-600 p-4">
+    <div className="container mx-auto flex justify-between items-center">
+      <Link to="/" className="text-white text-2xl font-bold">
+        Quiz Master
+      </Link>
+      <div>
+        <Link
+          to="/login"
+          className="bg-white text-blue-600 px-4 py-2 rounded-lg mr-2 hover:bg-blue-100 transition duration-300"
         >
-          <div
-            onClick={() => {
-              navigate("/signup");
-            }}
-            style={{ cursor: "pointer"}}
-          >
-            Login
-          </div>
-          <div
-            onClick={() => {
-              navigate("/signin");
-            }}
-            style={{ cursor: "pointer"}}
-          >
-           Register
-          </div>
-        </div>
+          Login
+        </Link>
+        <Link
+          to="/register"
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-400 transition duration-300"
+        >
+          Register
+        </Link>
       </div>
     </div>
+  </nav>
   );
 }
