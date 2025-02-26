@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import Gk from "../../assets/Gk.png"
+import Sk from "../../assets/Sk.png"
+import Hc from "../../assets/HC.png"
 
 export function Home() {
     return (
@@ -12,7 +15,7 @@ export function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg?height=200&width=400"
+                src={Gk}
                 alt="Quiz Category 1"
                 className="w-full h-48 object-cover"
               />
@@ -23,7 +26,7 @@ export function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg?height=200&width=400"
+                src={Sk}
                 alt="Quiz Category 2"
                 className="w-full h-48 object-cover"
               />
@@ -34,7 +37,7 @@ export function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg?height=200&width=400"
+                src={Hc}
                 alt="Quiz Category 3"
                 className="w-full h-48 object-cover"
               />
