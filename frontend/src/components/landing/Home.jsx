@@ -3,6 +3,7 @@ import image from '../../../public/download.jpeg';
 import image2 from '../../../public/science.jpeg'; 
 import image3 from '../../../public/history.jpeg';
 
+
 export function Home() {
     return (
         <div className="min-h-screen ">
@@ -15,6 +16,7 @@ export function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
+
                 src={image}
                 alt="Quiz Category 1"
                 className="w-full h-48 object-cover"
