@@ -2,9 +2,9 @@ import express from 'express';
 import openai from '../config/openai.js';
 import { authenticateUser } from '../middleware/authMiddleware.js';
 
-const router = express.Router();
+const questionRoutes = express.Router();
 
-router.post('/get-question', authenticateUser, async (req, res) => {
+questionRoutes.post('/get-question', authenticateUser, async (req, res) => {
   const { level } = req.body; // level = easy, medium, hard
 
   try {
@@ -33,4 +33,4 @@ router.post('/get-question', authenticateUser, async (req, res) => {
   }
 });
 
-export default router;
+export default questionRoutes;

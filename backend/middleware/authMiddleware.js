@@ -12,6 +12,7 @@ export const authenticateUser = (req, res, next) => {
     req.user = decoded; // contains userId
     next();
   } catch (err) {
+    console.log(err);
     return res.status(401).json({ message: "Invalid token." });
   }
 };
