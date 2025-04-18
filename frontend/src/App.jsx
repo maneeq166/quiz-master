@@ -3,7 +3,7 @@ import  Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="bg-[linear-gradient(90deg,rgba(89, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%)] ">
+    <div>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
