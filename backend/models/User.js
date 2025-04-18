@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   currency: {
     type: Number,
-    default: 0, // starts with 0 coins
+    default: 30, // starts with 0 coins
   }
 }, { timestamps: true });
 
