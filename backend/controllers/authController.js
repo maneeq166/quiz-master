@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 export const signup = async (req, res) => {
     try {
-      const { username, email, password } = req.body;
+      const { name, email, password } = req.body;
       console.log('Signup request received:', req.body);
   
       const existingUser = await User.findOne({ email });
@@ -17,7 +17,7 @@ export const signup = async (req, res) => {
       console.log('Password hashed successfully');
   
       const newUser = new User({
-        username,
+        name,
         email,
         password: hashedPassword,
       });

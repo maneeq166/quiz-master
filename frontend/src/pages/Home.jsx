@@ -18,6 +18,19 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white font-bold p-6 flex flex-col items-center">
       {/* HERO SECTION */}
+      <div className="absolute top-6 right-6">
+  <button
+    onClick={() => {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
+    }}
+    className="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-full font-bold shadow-lg transition-all"
+  >
+    🚪 Logout
+  </button>
+</div>
       <div className="text-center max-w-3xl">
         <div className='flex flex-row'>
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500">
@@ -38,7 +51,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-            <Link to="/learn-more">
+            <Link to="/learnmore">
               <Button className="bg-gradient-to-bl from-amber-300 via-rose-400 to-indigo-500 hover:from-pink-600 hover:to-yellow-400 text-white px-8 py-4 text-xl font-extrabold rounded-full shadow-xl border-4 border-white/20 transition-all duration-500">
                 📚 Learn More
               </Button>
