@@ -15,11 +15,15 @@ export const signup = async (req, res) => {
   
       const hashedPassword = await bcrypt.hash(password, 10);
       console.log('Password hashed successfully');
+      const randomUsername = 'user_' + Math.floor(Math.random() * 100000);
+
   
       const newUser = new User({
         name,
         email,
         password: hashedPassword,
+        username: randomUsername,
+        currency: 120, // starts with 120 coins
       });
   
       await newUser.save();
@@ -60,7 +64,7 @@ export const signup = async (req, res) => {
         token,
         user: {
           id: user._id,
-          username: user.username,
+          name: user.name,
           email: user.email,
         }
       });
