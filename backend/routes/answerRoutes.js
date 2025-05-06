@@ -2,9 +2,9 @@ import express from 'express';
 import { authenticateUser } from '../middleware/authMiddleware.js';
 import User from '../models/User.js';
 
-const router = express.Router();
+const answerrouter = express.Router();
 
-router.post('/submit-answer', authenticateUser, async (req, res) => {
+answerrouter.post('/submit-answer', authenticateUser, async (req, res) => {
   const { userAnswer, correctAnswer } = req.body;
 
   try {
@@ -17,10 +17,12 @@ router.post('/submit-answer', authenticateUser, async (req, res) => {
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     if (userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
-      user.coins += 10; // Reward 10 coins
+      user.coins += 10; 
       await user.save();
       return res.status(200).json({ message: 'Correct answer!', coins: user.coins });
     } else {
+      user.coins -= 10; 
+      await user.save();
       return res.status(200).json({ message: 'Wrong answer.', coins: user.coins });
     }
   } catch (err) {
@@ -29,4 +31,4 @@ router.post('/submit-answer', authenticateUser, async (req, res) => {
   }
 });
 
-export default router;
+export default answerrouter;

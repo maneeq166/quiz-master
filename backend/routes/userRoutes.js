@@ -4,7 +4,6 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Route to get logged-in user's data including coins
 router.get('/me', authenticateUser, async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');

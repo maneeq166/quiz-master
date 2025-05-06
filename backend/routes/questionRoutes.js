@@ -28,11 +28,15 @@ questionRoutes.post('/get-question', authenticateUser, async (req, res) => {
 
     const prompt = difficultyPrompt[level] || difficultyPrompt.medium;
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const aiQuestion = response.text();
+    const response = await genAI.models.generateContent({
+      model: 'gemini-2.0-flash',
+      contents: prompt,
+    });
+    console.log(response.text);
+    const aiQuestion = response.text;
+    if (!aiQuestion) {
+      return res.status(500).json({ message: 'Failed to generate question' });
+    }
 
     res.status(200).json({ question: aiQuestion, coins: user.coins });
 

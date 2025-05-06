@@ -23,7 +23,7 @@ export const signup = async (req, res) => {
         email,
         password: hashedPassword,
         username: randomUsername,
-        currency: 120, // starts with 120 coins
+        currency: 120, 
       });
   
       await newUser.save();

@@ -4,37 +4,31 @@ import { Button } from '@mui/material';
 import axios from 'axios';
 
 export default function Quiz() {
-  const [coins, setCoins] = useState(120);
-  const [question, setQuestion] = useState(null);
-  const [selected, setSelected] = useState(null);
-  const [result, setResult] = useState(null);
-  const[level, setLevel] = useState('easy');
-  const [loading, setLoading] = useState(false); 
+  const [question, setQuestion] = useState('');
+  const [coins, setCoins] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [level, setLevel] = useState('medium');
 
-  const fetchQuestion = async () => {
+  const getQuestion = async () => {
+    setLoading(true);
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         'http://localhost:5000/api/questions/get-question',
-        { level: 'easy' },
+        { level },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
-  
-      const parsed = JSON.parse(response.data.question); // make sure GPT sends JSON format
-      setQuestion({
-        text: parsed.question,
-        options: parsed.options,
-        correct: parsed.answer,
-      });
-      setCoins(response.data.coins);
-      setSelected(null);
-      setResult(null);
-    } catch (error) {
-      console.error(error.response?.data || error.message);
+
+      setQuestion(res.data.question);
+      setCoins(res.data.coins);
+    } catch (err) {
+      console.error(err.response?.data?.message || err.message);
+      alert(err.response?.data?.message || 'Something went wrong');
     }
+    setLoading(false);
   };
   
 
@@ -54,7 +48,7 @@ export default function Quiz() {
         </div>
 
         <button
-          onClick={fetchQuestion}
+          onClick={getQuestion}
           disabled={loading}
           className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white font-bold py-3 px-6 rounded-full shadow-xl hover:scale-105 transition duration-300"
         >

@@ -13,14 +13,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/answer', answerRoutes);
 app.use('/api/user', userRoutes);
 
 
-// Connect to DB and start server
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true , dbName:"quiz_master", })
   .then(() => {
     console.log("Connected to MongoDB");
