@@ -9,7 +9,7 @@ export default function Dashboard ()  {
       </h1>
 
       <p className="text-lg text-gray-200 max-w-xl text-center mb-10">
-        Test your knowledge and earn digital coins across Easy, Medium, and Hard
+        Test your knowledge and earn digital currency across Easy, Medium, and Hard
         questions powered by AI.
       </p>
 

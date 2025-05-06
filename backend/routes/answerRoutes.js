@@ -1,34 +1,46 @@
 import express from 'express';
 import { authenticateUser } from '../middleware/authMiddleware.js';
 import User from '../models/User.js';
+import genAI from '../config/gemini.js';
 
 const answerrouter = express.Router();
 
 answerrouter.post('/submit-answer', authenticateUser, async (req, res) => {
-  const { userAnswer, correctAnswer } = req.body;
+  const { question , userAnswer } = req.body;
+  const prompt = `Question: ${question}\nUser's Answer: ${userAnswer}\nDetermine if the user's answer is correct or incorrect. Reply only with "Yes" or "No".`;
 
-  try {
-    if (!userAnswer || !correctAnswer) {
-      return res.status(400).json({ message: 'Missing data.' });
-    }
+ try {
+  const response = await genAI.models.generateContent({
+    model: 'gemini-2.0-flash',
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+  });
 
-    const user = await User.findById(req.user._id);
 
-    if (!user) return res.status(404).json({ message: 'User not found' });
-
-    if (userAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) {
-      user.coins += 10; 
-      await user.save();
-      return res.status(200).json({ message: 'Correct answer!', coins: user.coins });
-    } else {
-      user.coins -= 10; 
-      await user.save();
-      return res.status(200).json({ message: 'Wrong answer.', coins: user.coins });
-    }
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: 'Something went wrong', error: err.message });
+  const rest = response.text;
+  console.log(rest);
+  const cleaned = rest.trim().toLowerCase();
+  console.log(cleaned);
+  const isCorrect = cleaned.includes("yes");
+  console.log(isCorrect);
+  let message = "";
+  
+  if (isCorrect) {
+    message = "✅ Correct Answer!";
+  } else {
+    message = "❌ Incorrect Answer.";
   }
+  
+  let updatedCurrency = req.user.currency + (isCorrect ? 10 : -5);
+
+  // Save to DB (optional)
+  await User.updateOne({ _id: req.user._id }, { currency: updatedCurrency });
+
+  res.status(200).json({ message, currency: updatedCurrency });
+
+} catch (err) {
+  console.error(err);
+  res.status(500).json({ message: "Error verifying answer with Gemini" });
+}
 });
 
 export default answerrouter;

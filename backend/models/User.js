@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   currency: {
     type: Number,
-    default: 120, // starts with 0 coins
+    default: 120, // starts with 0 currency
   }
 }, { timestamps: true });
 

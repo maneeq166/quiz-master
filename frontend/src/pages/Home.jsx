@@ -6,12 +6,12 @@ import { FaCoins } from 'react-icons/fa';
 import mascot from '../assets/images.jpeg'; // Add your mascot image here
 
 export default function Home() {
-  const [coins, setCoins] = useState(0);
+  const [currency, setcurrency] = useState(0);
   const user = true; // Simulate logged-in user
 
   useEffect(() => {
     if (user) {
-      setCoins(120); // Simulate coin fetching
+      setcurrency(120); // Simulate coin fetching
     }
   }, []);
 
@@ -33,13 +33,13 @@ export default function Home() {
 </div>
       <div className="text-center max-w-3xl">
         <div className='flex flex-row'>
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500">
-          Test Your Brain. <br /> Win Digital Coins
+        <h1 className="text-5xl sm:text-6xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-400 to-purple-500">
+          Test Your Brain. <br /> Win Digital currency
         </h1>
-        <p className='mt-[70px] ml-[10px] text-[60px]'>💰</p>
+        <p className='mt-[50px] ml-[10px] text-[60px]'>💰</p>
         </div>
         <p className="mt-6 text-lg text-gray-200 font-semibold">
-          Take AI-generated quizzes based on difficulty. Earn coins. Show off your skills.
+          Take AI-generated quizzes based on difficulty. Earn currency. Show off your skills.
         </p>
         <div className="mt-10 flex justify-center gap-6">
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
@@ -71,7 +71,7 @@ export default function Home() {
           <h2 className="text-2xl mb-2 flex items-center justify-center gap-2">
             <FaCoins className="text-yellow-300 text-3xl animate-bounce" /> Coin Balance:
           </h2>
-          <p className="text-4xl font-black text-yellow-300">{coins} coins</p>
+          <p className="text-4xl font-black text-yellow-300">{currency} currency</p>
         </div>
       )}
 
@@ -80,7 +80,7 @@ export default function Home() {
         <h3 className="text-3xl font-extrabold text-white mb-4">How It Works?</h3>
         <p>
           Our AI generates unique quiz questions every time based on difficulty you choose. <br />
-          Earn coins for each correct answer. Climb the leaderboard. Challenge friends soon!
+          Earn currency for each correct answer. Climb the leaderboard. Challenge friends soon!
         </p>
       </div>
     </div>
