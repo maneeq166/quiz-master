@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -13,17 +13,20 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', {
+      const res = await axios.post("http://localhost:5000/api/auth/signup", {
         name,
         email,
         password,
       });
 
-      console.log('Signup success:', res.data);
-      alert('Signup successful! You can login now.');
+      console.log("Signup success:", res.data);
+      alert("Signup successful! You can login now.");
     } catch (error) {
-      console.error('Signup error:', error.response?.data?.message || error.message);
-      alert(error.response?.data?.message || 'Signup failed.');
+      console.error(
+        "Signup error:",
+        error.response?.data?.message || error.message
+      );
+      alert(error.response?.data?.message || "Signup failed.");
     }
   };
 

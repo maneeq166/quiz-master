@@ -1,6 +1,6 @@
 // src/pages/Login.jsx
 import { motion } from "framer-motion";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -19,11 +19,10 @@ export default function Login() {
       });
 
       console.log("Login success:", res.data);
-      // Save token into localStorage
       localStorage.setItem("token", res.data.token);
 
       alert("Login successful!");
-      navigate('/home');
+      navigate("/home");
     } catch (error) {
       console.error(
         "Login error:",

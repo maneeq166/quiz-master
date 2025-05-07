@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import  Home from "./pages/Home";
+import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PrivateRoute from "./pages/PrivateRoute";
@@ -10,18 +10,23 @@ import Learnmore from "./pages/Learnmore";
 function App() {
   return (
     <div>
-    <BrowserRouter>
-      <Routes>
-      <Route path="/" element={<Dashboard />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/learnmore" element={<Learnmore />} />
-        <Route path="/quiz" element={<PrivateRoute>
-              <Quiz />
-            </PrivateRoute>} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/learnmore" element={<Learnmore />} />
+          <Route
+            path="/quiz"
+            element={
+              <PrivateRoute>
+                <Quiz />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
