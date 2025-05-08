@@ -13,7 +13,6 @@ Backend:
 Node.js
 Express.js
 MongoDB (for storing users, coins, and quiz data)
-Mongoose (MongoDB ODM)
 CORS and dotenv for config & security
 
 AI Integration:
@@ -24,4 +23,3 @@ User Authentication (Login/Signup)
 AI-generated quizzes (Easy, Medium, Hard levels)
 Coin system: Earn for right answers, lose for wrong ones
 Progress saved to database
-Custom UI
