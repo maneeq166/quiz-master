@@ -9,7 +9,7 @@ export default function Navbar({ currency }) {
         }}
         className="cursor-pointer text-3xl font-extrabold text-yellow-300 drop-shadow"
       >
-        QuizMaster 🧠
+        Quizora 🧠
       </h1>
       <div className="text-white font-bold flex items-center gap-2">
         <span className="text-yellow-300 text-lg mr-[20px]">

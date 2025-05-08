@@ -5,7 +5,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] flex flex-col items-center justify-center text-white p-6">
       <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FF6FD8] via-[#3813C2] to-[#B621FE] mb-6">
-        Welcome to Quiz Master!
+        Welcome to Quizora!
       </h1>
 
       <p className="text-lg text-gray-200 max-w-xl text-center mb-10">
