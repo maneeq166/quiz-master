@@ -1,9 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
-import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import authRoutes from "./routes/auth.js";
 import cors from "cors";
+
+import authRoutes from "./routes/auth.js";
 import questionRoutes from "./routes/questionRoutes.js";
 import answerRoutes from "./routes/answerRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -11,20 +11,21 @@ import userRoutes from "./routes/userRoutes.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://quizora-dusky.vercel.app', // or your frontend production URL
+  credentials: true,
+}));
 app.use(express.json());
-app.use(bodyParser.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/answer", answerRoutes);
 app.use("/api/user", userRoutes);
 
-const cronjob = async(req,res)=>{
-  res.status(200).send("Hi to cron job from server")
-}
-
-app.get('/cronjob' , cronjob);
+app.get('/cronjob', (req, res) => {
+  res.status(200).send("Hi to cron job from server");
+});
 
 mongoose
   .connect(process.env.MONGO_URI, {

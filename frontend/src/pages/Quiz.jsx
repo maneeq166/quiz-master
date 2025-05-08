@@ -83,7 +83,7 @@ export default function Quiz() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/questions/get-question",
+       `${import.meta.env.VITE_BACKEND_URL}/api/questions/get-question`,
         { level },
         {
           headers: {
@@ -115,7 +115,7 @@ export default function Quiz() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/answer/submit-answer",
+        `${import.meta.env.VITE_BACKEND_URL}/api/answer/submit-answer`,
         {
           question: question,
           userAnswer: selectedAnswer,

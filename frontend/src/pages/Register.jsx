@@ -13,11 +13,12 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, {
         name,
         email,
         password,
       });
+      
 
       console.log("Signup success:", res.data);
       alert("Signup successful! You can login now.");
