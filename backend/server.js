@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import cron from "node-cron";
 
 import authRoutes from "./routes/auth.js";
 import questionRoutes from "./routes/questionRoutes.js";
@@ -23,7 +24,12 @@ app.use("/api/questions", questionRoutes);
 app.use("/api/answer", answerRoutes);
 app.use("/api/user", userRoutes);
 
-app.get('/cronjob', (req, res) => {
+cron.schedule('0 * * * *', () => {
+  console.log('Running cron job at every hour at minute 0!');
+  // Example: call a function to update database, clear cache, etc.
+});
+
+app.get('/', (req, res) => {
   res.status(200).send("Hi to cron job from server");
 });
 
